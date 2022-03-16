@@ -34,7 +34,6 @@ fn main(){
     let y = Tree{data: Some(Box::new(9)), left: Some(Box::new(a)), right: Some(Box::new(b))};
     let mut x = Tree{data: Some(Box::new(10)), left: Some(Box::new(y)), right: Some(Box::new(e))};
     let mut output = x.postorder();
-    // output = x.preorder();
 
     for i in output.iter(){
         println!("{}", i);
@@ -55,7 +54,6 @@ impl<T: Ord> Tree<T> {
 
     /// Returns `false` if `key` already exists in the tree, and `true` otherwise.
     pub fn insert(&mut self, key: T) -> bool {
-        //unimplemented!()
         if self.find(&key){
             return true;
         }
@@ -74,25 +72,24 @@ impl<T: Ord> Tree<T> {
     pub fn find(&self, key: &T) -> bool {
         let mut result = false;
         match self.data{
-            None=> result = false,//println!("1None"),
+            None=> result = false,
             Some(ref val)=> 
                 
                 if **val == *key{
-                    //println!("2Match in Find");
                     return true;
                 }else{
-                    result = false;//println!("3No");
+                    result = false;
                 },
                 
         }
         match self.left{
-            None => result = false,//println!("4There is none"),
-            Some(ref left_tree) => //return left_tree.find(key)
+            None => result = false,
+            Some(ref left_tree) =>
                 if left_tree.find(key){return true},
         }
         match self.right{
-            None => result = false,//println!("4There is none"),
-            Some(ref right_tree) => //return right_tree.find(key),
+            None => result = false,
+            Some(ref right_tree) =>
                 if right_tree.find(key){return true},
         }
         
